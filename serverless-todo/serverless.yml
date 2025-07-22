@@ -1,0 +1,33 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: jetbase1testing
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: serverless-todo
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: serverless-todo
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    JWT_SECRET: 40e7b30d28d4ae1143ca1e33af4bd54905b259d714f5ec1c6a6de1de4ecd7844dc46d757399acc84f04d756bac328d651e211350c9857ca9c4f5a54f4f4a3dd7
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+  register:
+    handler: handler.register
+    events:
+      - httpApi:
+          path: /register
+          method: post
+  
+  login:
+    handler: handler.login
+    events:
+      - httpApi:
+          path: /login
+          method: post
